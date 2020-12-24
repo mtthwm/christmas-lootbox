@@ -1,19 +1,22 @@
-import { Socket } from 'dgram';
 import express from 'express';
+import path from 'path';
 
 const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
-io.on('connection', (socket: Socket) => {
+io.on('connection', (socket: any) => {
     console.log("CONNECT");
-    socket.emit('someone connected');
+    socket.on('request_open', (data: any) => {
+        console.log("SENDING OPEN SIGNAL");
+        socket.emit('open');
+    });
 });
 
 app.get('/', (request, response) => {
-    // response.sendFile(__filename)
+    response.sendFile(path.join(__dirname + "/index.html"))
 });
 
-app.listen(3001, ()  => {
+http.listen(3001, ()  => {
     console.log("listening on port 3001")
 });

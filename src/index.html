@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open a Lootbox</title>
+    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+</head>
+<body>
+    <h1>Press the button to claim your lootbox!</h1>
+    <button id="claim-button">Claim</button>
+</body>
+<script>
+    const socket = io();
+    const btn = document.getElementById("claim-button");
+    btn.addEventListener('click', () => {
+        console.log("click");
+        socket.emit('request_open');
+    })
+    socket.on('open', () => {
+        console.log('opening');
+    });
+</script>
+</html>
