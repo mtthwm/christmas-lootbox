@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 import express from 'express';
 import path from 'path';
 
@@ -17,6 +19,6 @@ app.get('/', (request, response) => {
     response.sendFile(path.join(__dirname + "/index.html"))
 });
 
-http.listen(3001, ()  => {
-    console.log("listening on port 3001")
+http.listen(process.env.PORT || 3001, ()  => {
+    console.log(`Listening on port: ${process.env.PORT || 3001}`)
 });
