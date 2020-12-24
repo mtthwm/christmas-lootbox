@@ -16,7 +16,7 @@
     btn.addEventListener('click', () => {
         console.log("click");
         socket.emit('request_open');
-    })
+    });
     socket.on('open', () => {
         console.log('opening');
     });

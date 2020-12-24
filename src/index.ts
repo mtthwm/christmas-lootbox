@@ -11,7 +11,7 @@ io.on('connection', (socket: any) => {
     console.log("CONNECT");
     socket.on('request_open', (data: any) => {
         console.log("SENDING OPEN SIGNAL");
-        socket.emit('open');
+        io.sockets.emit('open');
     });
 });
 
