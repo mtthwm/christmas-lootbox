@@ -19,6 +19,10 @@ app.get('/', (request, response) => {
     response.sendFile(path.join(__dirname + "/index.html"))
 });
 
+app.get('/killswitch', (request, response) => {
+    io.sockets.emit('shutdown');
+})
+
 http.listen(process.env.PORT || 3001, ()  => {
     console.log(`Listening on port: ${process.env.PORT || 3001}`)
 });
