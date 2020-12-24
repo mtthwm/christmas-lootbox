@@ -21,6 +21,7 @@ app.get('/', (request, response) => {
 
 app.get('/killswitch', (request, response) => {
     io.sockets.emit('shutdown');
+    response.status(200).end();
 })
 
 http.listen(process.env.PORT || 3001, ()  => {
